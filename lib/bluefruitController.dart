@@ -71,11 +71,16 @@ class _BluefruitControllerState extends State<BluefruitController> {
 
   void sendTime() async {
     var now = new DateTime.now();
-    var hour = now.hour.toString();
+    var hourInt = now.hour;
+    if (hourInt > 11) {
+      hourInt -= 12;
+    }
+    var hour = hourInt.toString();
     print('the hour is ${hour}');
     var minute = now.minute.toString();
     var second = now.second.toString();
-    if (now.hour < 10) {
+
+    if (hourInt < 10) {
       hour = '0' + hour;
     }
     if (now.minute < 10) {
